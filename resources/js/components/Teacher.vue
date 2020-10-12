@@ -1,7 +1,9 @@
 <template>
 
 <div class="container">
-    
+
+  <h2>Teacher Component</h2>
+<!--     
 <div class="card">
     <div class="card-body">
         <p class="card-title">Teachers information </p> <button @click="modal=true" class="btn btn-info float-right  "> Add new </button>        </div>
@@ -22,12 +24,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(teacher,index)  in teacherList" v-bind:key="teacher.id">
-                <th scope="row">{{index+1}}</th>
-                <td>{{teacher.name}}</td>
-                <td>Web programmer </td>
-                <td>fahiminstitute</td>
-                <td>fahimmbpi@gmail.com</td>
+                <tr>
+                
                 <td> 
 
                   <i style="cursor:pointer;" class="fa fa-edit " @click="update(index)"> </i>  
@@ -88,7 +86,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 
 </div>
@@ -103,77 +101,24 @@
 
           export default {
 
-          
            mounted(){
 
-               console.log('mounted'); 
 
-               this.getTeacherList();
            },
-          data() {
-                  return { 
+           data(){
 
-                         modal : false,
-                         name : '' ,  
-                         designation : '' ,  
-                         email : '' ,  
-                         institute : '' , 
-                         teacherList:'', 
-                         updateMode:false
+              return  {
 
-                  }
-          },
+              }
+           },
 
-            methods: {        
-                        
-                        formSubmit(){
-                            
-                            axios.post('/teacher/add',{
-                                name: this.name,
-                                designation: this.designation,
-                                email: this.email,
-                                institute: this.institute,
 
-                            })
-                            .then(resp => {
-                              if(resp.data.success="OK"){
-                                    this.modal=false;
-                                    this.getTeacherList();
-                              }
-                            })
-                            .catch(error =>{
+           methods:{
 
-                                console.log(error);
-                            })
-                        },
-                        getTeacherList(){
-                            axios.get('teacher/data')
-                            .then(resp=>{
-                                if(resp.data.success == "OK"){
-                                   this.teacherList=resp.data.data;
-                                }
-                                console.log(resp);
-                            })
-                            
-                        },
 
-                       remove(index){
-                             
-                           axios.delete('teacher/data/remove/'+this.teacherList[index].id)
-                           .then(resp=>{
-                                    
-                                    if (resp.data.success== "OK") {
-                                       console.log(resp.data.messaage)
-                                      return   this.getTeacherList()
-                                    }
 
-                           })
-                           
-
-                       }
-                     
-                      
-                    },
+           },
+           
                   
 
 

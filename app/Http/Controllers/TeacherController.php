@@ -114,7 +114,7 @@ class TeacherController extends Controller
             
              return response()->json([
                  "succcess" => "OK",
-                 "message"  => "successfully deleted one user"
+                 "message"  => "successfully deleted one user",
              ]);
         }
     }

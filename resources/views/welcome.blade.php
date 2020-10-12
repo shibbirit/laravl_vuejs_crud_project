@@ -16,8 +16,13 @@
 
         <div id="app">
             <div class="container">
-            <teacher> </teacher>
-                </div>                     
+                <router-link to="/">Teacher</router-link>
+                <router-link to="/student">Studnt</router-link>
+                <router-link to="/customer">customer</router-link>
+
+              <router-view> </router-view>
+            
+             </div>                     
         
         </div>
 
