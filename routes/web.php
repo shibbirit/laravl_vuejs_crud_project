@@ -38,9 +38,15 @@ Route::get('customer/data', 'CustomerController@index');
 
 Route::post('customer/add', 'CustomerController@store');
 
+Route::get('find/editCustomer/{id}', 'CustomerController@findEditCustomer');
+
 Route::put('customer/udpate/data/{id}', 'CustomerController@update');
 
 Route::delete('customer/data/remove/{id}','CustomerController@destroy');
+
+// Route::get('/{any}',function(){
+//         return view('welcome');
+// })->where('any',);
 
 
 

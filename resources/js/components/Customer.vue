@@ -34,7 +34,7 @@
 
                                     <td> 
 
-                                        <i style="cursor:pointer " class="fa fa-edit"></i>
+                                        <router-link :to="{name:'editCustomer',params:{id:customer.id}}"><i style="cursor:pointer " v-on:click="editAction(customer)"  class="fa fa-edit"></i></router-link>
 
                                         <i style="cursor:pointer " v-on:click="destroyCustomer(customer,index)" class="fa fa-trash-alt ml-2"></i>
 
@@ -79,8 +79,11 @@
                 </div>
             </div>
             </div>
+            
     </div>
    
+ 
+
 </template>
 
 <script>
@@ -139,6 +142,12 @@
                 })
 
                    
+            },
+
+            editAction(customer){
+
+                 
+
             },
 
 

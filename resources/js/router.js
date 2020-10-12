@@ -6,6 +6,7 @@ Vue.use(VueRouter);
 import Student from './components/Student';
 import Teacher from './components/Teacher';
 import Customer from './components/Customer' ;
+import editCustomer from './components/CustomerEdit' ;
 
 const routes = [
 
@@ -22,6 +23,14 @@ const routes = [
     { 
         path: '/customer',
         component: Customer
+    },
+
+
+    
+    { 
+        path: '/customer/edit/:id',
+        component: editCustomer,
+        name:'editCustomer'
     },
 
 

@@ -44,14 +44,34 @@ class CustomerController extends Controller
         
     }
 
+    public  function findEditCustomer($id){
 
+              $customer= Customer::find($id);
+
+              return response()->json([
+
+                       "success" => "OK",
+                       'customer' => $customer ,
+              ]);
+
+
+    }
 
     public function update(Request $request, $id)
     {
-           return $request->all() ;
+          $customer = Customer::find($id);
+       
+           $customer->name=$request->name;
+           $customer->phone=$request->phone;
 
-           
-        $customer = new Customer() ;
+           if ($customer->save()) {
+               
+                   return response()->json([
+
+                        "success"  => "OK",
+                        "message"  => "Customer data updated successfully ",
+                   ]);
+           }
 
     }
 
