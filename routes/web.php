@@ -33,3 +33,14 @@ Route::put('teacher/udpate/data/{id}', 'TeacherController@update');
 
 Route::delete('teacher/data/remove/{id}','TeacherController@destroy');
 
+
+Route::get('customer/data', 'CustomerController@index');
+
+Route::post('customer/add', 'CustomerController@store');
+
+Route::put('customer/udpate/data/{id}', 'CustomerController@update');
+
+Route::delete('customer/data/remove/{id}','CustomerController@destroy');
+
+
+
