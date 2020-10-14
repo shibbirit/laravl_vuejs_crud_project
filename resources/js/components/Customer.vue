@@ -4,10 +4,21 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                                
+                         <div class="row  ">
+                        
+                                     <h5 style="margin-left: 155px;margin-bottom: 18px; margin-top: 10px;" class="heading">  Customer Information SPA Application</h5>
+                        
+                            </div>       
                     <div class="row">
                         <div class="col-md-6">
-                            <h4 class="heading ">Customer information </h4>
+
+
+                            <form  id="searchForm" >
+                                <input type="text" @keyup="searchCustomer" v-model="search" class="form-control" id="">
+                                <button type="submit" style="margin-top:-65px;margin-left: 325px;" class="btn btn-primary" > <i  class="fa fa-search" style="cursor:pointer;" ></i> </button>
+                            </form>
+
+
                         </div>
                         <div class="col-md-6">
                             <button class="btn btn-primary float-right " @click="modal=true"><i class="fa fa-lg fa-plus"></i></button>
@@ -101,6 +112,7 @@
                 name :'', 
                 phone:'' ,
                 customerList :'',
+                search:'',
 
             }
         },
@@ -149,7 +161,27 @@
                  
 
             },
+            
+            searchCustomer(){
 
+                axios.get('customer/data/search/'+this.search)
+                .then(resp =>{
+                   
+                   
+
+                   if (resp.data.success == "OK") {
+                       
+                       this.customerList = resp.data.searchingCustomer ;
+                       console.log(this.customerList);
+
+                   }else{
+                       this.getCustomerList();
+                       
+                   }
+
+                })
+                .catch()
+            },
 
           destroyCustomer(customer,index){
 

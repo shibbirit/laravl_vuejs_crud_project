@@ -75,6 +75,17 @@ class CustomerController extends Controller
 
     }
 
+     
+    public function searchData($data){
+        
+          $searchData= Customer::where('name','like','%'.$data.'%')
+           ->orWhere('phone','like','%'.$data.'%' )->get();    
+
+           return response()->json([
+               "success" => "OK",
+               "searchingCustomer" => $searchData ,
+           ]);
+    }
 
 
     public function destroy($id)

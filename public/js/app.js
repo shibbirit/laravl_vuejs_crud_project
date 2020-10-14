@@ -1996,6 +1996,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log(' mounted.');
@@ -2006,7 +2017,8 @@ __webpack_require__.r(__webpack_exports__);
       modal: false,
       name: '',
       phone: '',
-      customerList: ''
+      customerList: '',
+      search: ''
     };
   },
   methods: {
@@ -2038,12 +2050,24 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     editAction: function editAction(customer) {},
-    destroyCustomer: function destroyCustomer(customer, index) {
+    searchCustomer: function searchCustomer() {
       var _this3 = this;
+
+      axios.get('customer/data/search/' + this.search).then(function (resp) {
+        if (resp.data.success == "OK") {
+          _this3.customerList = resp.data.searchingCustomer;
+          console.log(_this3.customerList);
+        } else {
+          _this3.getCustomerList();
+        }
+      })["catch"]();
+    },
+    destroyCustomer: function destroyCustomer(customer, index) {
+      var _this4 = this;
 
       axios["delete"]('customer/data/remove/' + customer.id).then(function (resp) {
         if (resp.data.success == "OK") {
-          _this3.customerList.splice(index, 1);
+          _this4.customerList.splice(index, 1);
 
           alert(resp.data.message);
         }
@@ -37989,8 +38013,37 @@ var render = function() {
       _c("div", { staticClass: "col-md-8" }, [
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-header" }, [
+            _vm._m(0),
+            _vm._v(" "),
             _c("div", { staticClass: "row" }, [
-              _vm._m(0),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("form", { attrs: { id: "searchForm" } }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.search,
+                        expression: "search"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text", id: "" },
+                    domProps: { value: _vm.search },
+                    on: {
+                      keyup: _vm.searchCustomer,
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.search = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm._m(1)
+                ])
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-6" }, [
                 _c(
@@ -38011,7 +38064,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _c("table", { staticClass: "table tble-bordered table-striped " }, [
-              _vm._m(1),
+              _vm._m(2),
               _vm._v(" "),
               _c(
                 "tbody",
@@ -38228,9 +38281,39 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6" }, [
-      _c("h4", { staticClass: "heading " }, [_vm._v("Customer information ")])
+    return _c("div", { staticClass: "row  " }, [
+      _c(
+        "h5",
+        {
+          staticClass: "heading",
+          staticStyle: {
+            "margin-left": "155px",
+            "margin-bottom": "18px",
+            "margin-top": "10px"
+          }
+        },
+        [_vm._v("  Customer Information SPA Application")]
+      )
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-primary",
+        staticStyle: { "margin-top": "-65px", "margin-left": "325px" },
+        attrs: { type: "submit" }
+      },
+      [
+        _c("i", {
+          staticClass: "fa fa-search",
+          staticStyle: { cursor: "pointer" }
+        })
+      ]
+    )
   },
   function() {
     var _vm = this

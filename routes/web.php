@@ -44,6 +44,10 @@ Route::put('customer/udpate/data/{id}', 'CustomerController@update');
 
 Route::delete('customer/data/remove/{id}','CustomerController@destroy');
 
+Route::get('customer/data/search/{search}','CustomerController@searchData');
+
+
+
 // Route::get('/{any}',function(){
 //         return view('welcome');
 // })->where('any',);
